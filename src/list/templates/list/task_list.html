@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<center>
+    <form method="POST">{% csrf_token %}
+    {{form.as_p}}
+    <input type='submit' value='add'/>
+    </form>
+    <br> <h3>Current tasks</h3>
+</center>
+
+{% for instance in object_list %}
+<center>
+<!--    {% if instance.done is False %}-->
+    <p>{{instance.title}}</p>
+    <form action="{{instance.id}}/delete/" method = "post">{% csrf_token %}
+        <input type="submit" value="X">
+    </form>
+<!--    <form method="POST">{% csrf_token %}-->
+<!--    {{done_form.as_p}}-->
+<!--    <input type='submit' value='V'/>-->
+<!--    </form>-->
+<!--    {% endif %}-->
+</center>
+{% endfor %}
+{% endblock %}
+
